@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" targetNamespace="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes">
+      <s:element name="ListarSituacoesReuniaoSessao">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListarSituacoesReuniaoSessaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarSituacoesReuniaoSessaoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarPresencasParlamentar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataIni" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataFim" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numMatriculaParlamentar" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarPresencasParlamentarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarPresencasParlamentarResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarDiscursosPlenario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataIni" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataFim" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigoSessao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parteNomeParlamentar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="siglaPartido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="siglaUF" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarDiscursosPlenarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarDiscursosPlenarioResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obterInteiroTeorDiscursosPlenario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codSessao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numOrador" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numQuarto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numInsercao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obterInteiroTeorDiscursosPlenarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obterInteiroTeorDiscursosPlenarioResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarPresencasDia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numMatriculaParlamentar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="siglaPartido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="siglaUF" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListarPresencasDiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarPresencasDiaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listarDiscursosSessoesCongressoEncerradas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataini" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datafim" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listarDiscursosSessoesCongressoEncerradasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listarDiscursosSessoesCongressoEncerradasResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListarSituacoesReuniaoSessaoSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarSituacoesReuniaoSessao" />
+  </wsdl:message>
+  <wsdl:message name="ListarSituacoesReuniaoSessaoSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarSituacoesReuniaoSessaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasParlamentarSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarPresencasParlamentar" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasParlamentarSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarPresencasParlamentarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarDiscursosPlenarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarDiscursosPlenario" />
+  </wsdl:message>
+  <wsdl:message name="ListarDiscursosPlenarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarDiscursosPlenarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="obterInteiroTeorDiscursosPlenarioSoapIn">
+    <wsdl:part name="parameters" element="tns:obterInteiroTeorDiscursosPlenario" />
+  </wsdl:message>
+  <wsdl:message name="obterInteiroTeorDiscursosPlenarioSoapOut">
+    <wsdl:part name="parameters" element="tns:obterInteiroTeorDiscursosPlenarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasDiaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarPresencasDia" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasDiaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarPresencasDiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="listarDiscursosSessoesCongressoEncerradasSoapIn">
+    <wsdl:part name="parameters" element="tns:listarDiscursosSessoesCongressoEncerradas" />
+  </wsdl:message>
+  <wsdl:message name="listarDiscursosSessoesCongressoEncerradasSoapOut">
+    <wsdl:part name="parameters" element="tns:listarDiscursosSessoesCongressoEncerradasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarSituacoesReuniaoSessaoHttpGetIn" />
+  <wsdl:message name="ListarSituacoesReuniaoSessaoHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasParlamentarHttpGetIn">
+    <wsdl:part name="dataIni" type="s:string" />
+    <wsdl:part name="dataFim" type="s:string" />
+    <wsdl:part name="numMatriculaParlamentar" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasParlamentarHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ListarDiscursosPlenarioHttpGetIn">
+    <wsdl:part name="dataIni" type="s:string" />
+    <wsdl:part name="dataFim" type="s:string" />
+    <wsdl:part name="codigoSessao" type="s:string" />
+    <wsdl:part name="parteNomeParlamentar" type="s:string" />
+    <wsdl:part name="siglaPartido" type="s:string" />
+    <wsdl:part name="siglaUF" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDiscursosPlenarioHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="obterInteiroTeorDiscursosPlenarioHttpGetIn">
+    <wsdl:part name="codSessao" type="s:string" />
+    <wsdl:part name="numOrador" type="s:string" />
+    <wsdl:part name="numQuarto" type="s:string" />
+    <wsdl:part name="numInsercao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="obterInteiroTeorDiscursosPlenarioHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasDiaHttpGetIn">
+    <wsdl:part name="data" type="s:string" />
+    <wsdl:part name="numMatriculaParlamentar" type="s:string" />
+    <wsdl:part name="siglaPartido" type="s:string" />
+    <wsdl:part name="siglaUF" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasDiaHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="listarDiscursosSessoesCongressoEncerradasHttpGetIn">
+    <wsdl:part name="dataini" type="s:string" />
+    <wsdl:part name="datafim" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="listarDiscursosSessoesCongressoEncerradasHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ListarSituacoesReuniaoSessaoHttpPostIn" />
+  <wsdl:message name="ListarSituacoesReuniaoSessaoHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasParlamentarHttpPostIn">
+    <wsdl:part name="dataIni" type="s:string" />
+    <wsdl:part name="dataFim" type="s:string" />
+    <wsdl:part name="numMatriculaParlamentar" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasParlamentarHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ListarDiscursosPlenarioHttpPostIn">
+    <wsdl:part name="dataIni" type="s:string" />
+    <wsdl:part name="dataFim" type="s:string" />
+    <wsdl:part name="codigoSessao" type="s:string" />
+    <wsdl:part name="parteNomeParlamentar" type="s:string" />
+    <wsdl:part name="siglaPartido" type="s:string" />
+    <wsdl:part name="siglaUF" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarDiscursosPlenarioHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="obterInteiroTeorDiscursosPlenarioHttpPostIn">
+    <wsdl:part name="codSessao" type="s:string" />
+    <wsdl:part name="numOrador" type="s:string" />
+    <wsdl:part name="numQuarto" type="s:string" />
+    <wsdl:part name="numInsercao" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="obterInteiroTeorDiscursosPlenarioHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasDiaHttpPostIn">
+    <wsdl:part name="data" type="s:string" />
+    <wsdl:part name="numMatriculaParlamentar" type="s:string" />
+    <wsdl:part name="siglaPartido" type="s:string" />
+    <wsdl:part name="siglaUF" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListarPresencasDiaHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="listarDiscursosSessoesCongressoEncerradasHttpPostIn">
+    <wsdl:part name="dataini" type="s:string" />
+    <wsdl:part name="datafim" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="listarDiscursosSessoesCongressoEncerradasHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="SessoesReunioesSoap">
+    <wsdl:operation name="ListarSituacoesReuniaoSessao">
+      <wsdl:input message="tns:ListarSituacoesReuniaoSessaoSoapIn" />
+      <wsdl:output message="tns:ListarSituacoesReuniaoSessaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasParlamentar">
+      <wsdl:input message="tns:ListarPresencasParlamentarSoapIn" />
+      <wsdl:output message="tns:ListarPresencasParlamentarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDiscursosPlenario">
+      <wsdl:input message="tns:ListarDiscursosPlenarioSoapIn" />
+      <wsdl:output message="tns:ListarDiscursosPlenarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obterInteiroTeorDiscursosPlenario">
+      <wsdl:input message="tns:obterInteiroTeorDiscursosPlenarioSoapIn" />
+      <wsdl:output message="tns:obterInteiroTeorDiscursosPlenarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasDia">
+      <wsdl:input message="tns:ListarPresencasDiaSoapIn" />
+      <wsdl:output message="tns:ListarPresencasDiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listarDiscursosSessoesCongressoEncerradas">
+      <wsdl:input message="tns:listarDiscursosSessoesCongressoEncerradasSoapIn" />
+      <wsdl:output message="tns:listarDiscursosSessoesCongressoEncerradasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SessoesReunioesHttpGet">
+    <wsdl:operation name="ListarSituacoesReuniaoSessao">
+      <wsdl:input message="tns:ListarSituacoesReuniaoSessaoHttpGetIn" />
+      <wsdl:output message="tns:ListarSituacoesReuniaoSessaoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasParlamentar">
+      <wsdl:input message="tns:ListarPresencasParlamentarHttpGetIn" />
+      <wsdl:output message="tns:ListarPresencasParlamentarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDiscursosPlenario">
+      <wsdl:input message="tns:ListarDiscursosPlenarioHttpGetIn" />
+      <wsdl:output message="tns:ListarDiscursosPlenarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obterInteiroTeorDiscursosPlenario">
+      <wsdl:input message="tns:obterInteiroTeorDiscursosPlenarioHttpGetIn" />
+      <wsdl:output message="tns:obterInteiroTeorDiscursosPlenarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasDia">
+      <wsdl:input message="tns:ListarPresencasDiaHttpGetIn" />
+      <wsdl:output message="tns:ListarPresencasDiaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listarDiscursosSessoesCongressoEncerradas">
+      <wsdl:input message="tns:listarDiscursosSessoesCongressoEncerradasHttpGetIn" />
+      <wsdl:output message="tns:listarDiscursosSessoesCongressoEncerradasHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SessoesReunioesHttpPost">
+    <wsdl:operation name="ListarSituacoesReuniaoSessao">
+      <wsdl:input message="tns:ListarSituacoesReuniaoSessaoHttpPostIn" />
+      <wsdl:output message="tns:ListarSituacoesReuniaoSessaoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasParlamentar">
+      <wsdl:input message="tns:ListarPresencasParlamentarHttpPostIn" />
+      <wsdl:output message="tns:ListarPresencasParlamentarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarDiscursosPlenario">
+      <wsdl:input message="tns:ListarDiscursosPlenarioHttpPostIn" />
+      <wsdl:output message="tns:ListarDiscursosPlenarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obterInteiroTeorDiscursosPlenario">
+      <wsdl:input message="tns:obterInteiroTeorDiscursosPlenarioHttpPostIn" />
+      <wsdl:output message="tns:obterInteiroTeorDiscursosPlenarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasDia">
+      <wsdl:input message="tns:ListarPresencasDiaHttpPostIn" />
+      <wsdl:output message="tns:ListarPresencasDiaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listarDiscursosSessoesCongressoEncerradas">
+      <wsdl:input message="tns:listarDiscursosSessoesCongressoEncerradasHttpPostIn" />
+      <wsdl:output message="tns:listarDiscursosSessoesCongressoEncerradasHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SessoesReunioesSoap" type="tns:SessoesReunioesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarSituacoesReuniaoSessao">
+      <soap:operation soapAction="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes/ListarSituacoesReuniaoSessao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasParlamentar">
+      <soap:operation soapAction="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes/ListarPresencasParlamentar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDiscursosPlenario">
+      <soap:operation soapAction="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes/ListarDiscursosPlenario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obterInteiroTeorDiscursosPlenario">
+      <soap:operation soapAction="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes/obterInteiroTeorDiscursosPlenario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasDia">
+      <soap:operation soapAction="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes/ListarPresencasDia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarDiscursosSessoesCongressoEncerradas">
+      <soap:operation soapAction="http://www.camara.gov.br/SitCamaraWS/SessoesReunioes/listarDiscursosSessoesCongressoEncerradas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SessoesReunioesHttpGet" type="tns:SessoesReunioesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ListarSituacoesReuniaoSessao">
+      <http:operation location="/ListarSituacoesReuniaoSessao" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasParlamentar">
+      <http:operation location="/ListarPresencasParlamentar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDiscursosPlenario">
+      <http:operation location="/ListarDiscursosPlenario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obterInteiroTeorDiscursosPlenario">
+      <http:operation location="/obterInteiroTeorDiscursosPlenario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasDia">
+      <http:operation location="/ListarPresencasDia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarDiscursosSessoesCongressoEncerradas">
+      <http:operation location="/listarDiscursosSessoesCongressoEncerradas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SessoesReunioesHttpPost" type="tns:SessoesReunioesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ListarSituacoesReuniaoSessao">
+      <http:operation location="/ListarSituacoesReuniaoSessao" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasParlamentar">
+      <http:operation location="/ListarPresencasParlamentar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarDiscursosPlenario">
+      <http:operation location="/ListarDiscursosPlenario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obterInteiroTeorDiscursosPlenario">
+      <http:operation location="/obterInteiroTeorDiscursosPlenario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPresencasDia">
+      <http:operation location="/ListarPresencasDia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarDiscursosSessoesCongressoEncerradas">
+      <http:operation location="/listarDiscursosSessoesCongressoEncerradas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SessoesReunioes">
+    <wsdl:port name="SessoesReunioesSoap" binding="tns:SessoesReunioesSoap">
+      <soap:address location="http://www.camara.leg.br/SitCamaraWS/SessoesReunioes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SessoesReunioesHttpGet" binding="tns:SessoesReunioesHttpGet">
+      <http:address location="http://www.camara.leg.br/SitCamaraWS/SessoesReunioes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SessoesReunioesHttpPost" binding="tns:SessoesReunioesHttpPost">
+      <http:address location="http://www.camara.leg.br/SitCamaraWS/SessoesReunioes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
