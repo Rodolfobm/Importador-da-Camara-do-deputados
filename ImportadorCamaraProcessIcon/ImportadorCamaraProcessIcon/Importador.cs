@@ -191,7 +191,7 @@ namespace ImportadorCamaraProcessIcon
             {
                 var dataverify = from d in db.sessao_camara
                                  select d;
-                if(!(dataverify.Count() > 0))
+                if(dataverify.Count() > 0)
                 {
                     DateTime hoje = new DateTime();
                     hoje = DateTime.Now;
