@@ -16,7 +16,11 @@ namespace ImportadorCamaraProcessIcon
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-      
+            using (ProcessIcon pi = new ProcessIcon())
+            {
+                pi.Display();
+                Application.Run();
+            }
         }
     }
 }

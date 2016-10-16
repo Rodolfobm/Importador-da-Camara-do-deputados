@@ -63,9 +63,9 @@ namespace ImportadorCamaraProcessIcon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon images {
+        internal static System.Drawing.Icon simbolo_do_congresso_nacional {
             get {
-                object obj = ResourceManager.GetObject("images", resourceCulture);
+                object obj = ResourceManager.GetObject("simbolo_do_congresso_nacional", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

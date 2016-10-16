@@ -6,7 +6,7 @@ namespace ImportadorCamaraProcessIcon
     class ContextMenus
     {
         public ContextMenuStrip Create()
-            {
+        {
             // Add the default menu options.
             ContextMenuStrip menu = new ContextMenuStrip();
             ToolStripMenuItem item;
@@ -24,6 +24,5 @@ namespace ImportadorCamaraProcessIcon
         {
             Application.Exit();
         }
-    }
     }
 }

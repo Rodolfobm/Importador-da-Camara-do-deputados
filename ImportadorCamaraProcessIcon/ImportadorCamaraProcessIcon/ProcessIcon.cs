@@ -16,16 +16,15 @@ namespace ImportadorCamaraProcessIcon
         public ProcessIcon()
         {
             ni = new NotifyIcon();
-            contador = new Cronometro();
         }
 
         public void Display()
         {
-            ni.Icon = Resources.images;
+            ni.Icon = Resources.simbolo_do_congresso_nacional;
             ni.Text = "Importador da câmara dos deputados";
             ni.Visible = true;
-
             ni.ContextMenuStrip = new ContextMenus().Create();
+            contador = new Cronometro(ni);
         }
         public void Dispose()
         {

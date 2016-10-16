@@ -148,6 +148,7 @@
       <DependentUpon>AuditoriaEntities.edmx</DependentUpon>
       <LastGenOutput>AuditoriaEntities.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\simbolo_do_congresso_nacional.ico" />
     <None Include="Resources\images.ico" />
   </ItemGroup>
   <ItemGroup>

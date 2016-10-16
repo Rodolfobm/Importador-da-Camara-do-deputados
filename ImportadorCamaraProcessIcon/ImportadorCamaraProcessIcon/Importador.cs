@@ -185,6 +185,25 @@ namespace ImportadorCamaraProcessIcon
                 param = dataInicio.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, dataInicio.Date.ToString().IndexOf(" "));
             }
         }
+        public void controlaMetodo()
+        {
+            using(auditoriaEntities db = new auditoriaEntities())
+            {
+                var dataverify = from d in db.sessao_camara
+                                 select d;
+                if(!(dataverify.Count() > 0))
+                {
+                    DateTime hoje = new DateTime();
+                    hoje = DateTime.Now;
+                    hoje = hoje.AddDays(-5);
+                    importaSessao(hoje.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, hoje.Date.ToString().IndexOf(" ")));
+                }
+                else{
+                    inicializar();
+                }          
+            }
+               
+        }
 
     }
 }
