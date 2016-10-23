@@ -17,20 +17,30 @@ namespace ImportadorCamaraProcessIcon
         }
         private void CountZero(object sender, ElapsedEventArgs e)
         {
-            this.Stop();
+            Stop();
             if (Interval == 60)
             {
                 //Um dia em milisegundos
                 this.Interval = 86400000;
+                Stop();
+                ni.BalloonTipText = "Importando sessões e presenças";
+                ni.Text = "Importando sessões e presenças";
+
+                importador.inicializar();
+
+                ni.BalloonTipText = "";
+                ni.Text = "Importador da câmara dos deputados";
+                Start();
+
             }
             ni.BalloonTipText = "Importando sessões e presenças";
             ni.Text = "Importando sessões e presenças";
 
-            importador.controlaMetodo();
+            importador.importaDia();
             
             ni.BalloonTipText = "";
             ni.Text = "Importador da câmara dos deputados";
-            this.Start();
+            Start();
         }
     }
 }

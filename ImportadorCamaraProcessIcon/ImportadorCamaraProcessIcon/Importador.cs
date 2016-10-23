@@ -167,41 +167,54 @@ namespace ImportadorCamaraProcessIcon
             int ano0 = dataFinal.Year - 2015;
             string param = "";
 
-            if ((ano0 < 4))
+            using (auditoriaEntities db = new auditoriaEntities())
             {
-                param = "01/02/" + 2015;
-                dataInicio = DateTime.Parse(param, CultureInfo.CurrentCulture);
-            }
-            else
-            {
-                param = "01/02/" + ((int)dataFinal.Year - (ano0 % 4));
-                dataInicio = DateTime.Parse(param, CultureInfo.CurrentCulture);
-            }
+                var dataVerify = from b in db.sessao_camara
+                                 select b;
+                if (dataVerify.Count() != 0)
+                {
+                    List<sessao_camara> sessoesImportadas = dataVerify.ToList();
+                    sessao_camara sessao = sessoesImportadas.ElementAt(0);
+                    for (int i=1; i < sessoesImportadas.Count(); i++)
+                    {
+                        if(sessoesImportadas.ElementAt(i).idSessao > sessao.idSessao)
+                        {
+                            sessao = sessoesImportadas.ElementAt(i);
+                        }
+                    }
+                    dataInicio = DateTime.Parse(sessao.dataSessao, CultureInfo.CurrentCulture);
+                    dataInicio = dataInicio.AddDays(1);
+                    param = dataInicio.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, dataInicio.Date.ToString().IndexOf(" "));
+                }
+                else
+                {
 
-            while (param != dataFinal.Date.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture).Substring(0, dataFinal.Date.ToString().IndexOf(" ")))
+                    if ((ano0 < 4))
+                    {
+                        param = "01/02/" + 2015;
+                        dataInicio = DateTime.Parse(param, CultureInfo.CurrentCulture);
+                    }
+                    else
+                    {
+                        param = "01/02/" + ((int)dataFinal.Year - (ano0 % 4));
+                        dataInicio = DateTime.Parse(param, CultureInfo.CurrentCulture);
+                    }
+                }
+            }
+            while (param != dataFinal.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, dataFinal.Date.ToString().IndexOf(" ")))
             {
-                this.importaSessao(param);
+                importaSessao(param);
                 dataInicio = dataInicio.AddDays(1);
                 param = dataInicio.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, dataInicio.Date.ToString().IndexOf(" "));
             }
         }
-        public void controlaMetodo()
-        {
-            using(auditoriaEntities db = new auditoriaEntities())
-            {
-                var dataverify = from d in db.sessao_camara
-                                 select d;
-                if(dataverify.Count() > 0)
-                {
-                    DateTime hoje = new DateTime();
-                    hoje = DateTime.Now;
-                    hoje = hoje.AddDays(-5);
-                    importaSessao(hoje.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, hoje.Date.ToString().IndexOf(" ")));
-                }
-                else{
-                    inicializar();
-                }          
-            }
+        public void importaDia()
+        {      
+              DateTime hoje = new DateTime();
+              hoje = DateTime.Now;
+              hoje = hoje.AddDays(-5);
+              importaSessao(hoje.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, hoje.Date.ToString().IndexOf(" ")));
+            
                
         }
 
