@@ -67,20 +67,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuditoriaEntities.Context.cs">
+    <Compile Include="auditoriaEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuditoriaEntities.Context.tt</DependentUpon>
+      <DependentUpon>auditoriaEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AuditoriaEntities.cs">
+    <Compile Include="auditoriaEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuditoriaEntities.tt</DependentUpon>
+      <DependentUpon>auditoriaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="AuditoriaEntities.Designer.cs">
+    <Compile Include="auditoriaEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuditoriaEntities.edmx</DependentUpon>
+      <DependentUpon>auditoriaEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="ContextMenus.cs" />
     <Compile Include="Cronometro.cs">
@@ -88,13 +88,13 @@
     </Compile>
     <Compile Include="Importador.cs" />
     <Compile Include="presenca_deputado.cs">
-      <DependentUpon>AuditoriaEntities.tt</DependentUpon>
+      <DependentUpon>auditoriaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ProcessIcon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sessao_camara.cs">
-      <DependentUpon>AuditoriaEntities.tt</DependentUpon>
+      <DependentUpon>auditoriaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Web References\br.leg.camara.www\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -111,12 +111,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="AuditoriaEntities.edmx">
+    <EntityDeploy Include="auditoriaEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AuditoriaEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>auditoriaEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AuditoriaEntities.edmx.diagram">
-      <DependentUpon>AuditoriaEntities.edmx</DependentUpon>
+    <None Include="auditoriaEntities.edmx.diagram">
+      <DependentUpon>auditoriaEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -138,16 +138,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AuditoriaEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AuditoriaEntities.edmx</DependentUpon>
-      <LastGenOutput>AuditoriaEntities.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="AuditoriaEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AuditoriaEntities.edmx</DependentUpon>
-      <LastGenOutput>AuditoriaEntities.cs</LastGenOutput>
-    </Content>
     <None Include="Resources\simbolo_do_congresso_nacional.ico" />
     <None Include="Resources\images.ico" />
   </ItemGroup>
@@ -172,6 +162,18 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>ImportadorCamaraProcessIcon_br_leg_camara_www_SessoesReunioes</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="auditoriaEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>auditoriaEntities.edmx</DependentUpon>
+      <LastGenOutput>auditoriaEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="auditoriaEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>auditoriaEntities.edmx</DependentUpon>
+      <LastGenOutput>auditoriaEntities.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

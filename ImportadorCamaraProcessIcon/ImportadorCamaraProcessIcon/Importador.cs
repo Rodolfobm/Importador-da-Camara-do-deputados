@@ -213,9 +213,7 @@ namespace ImportadorCamaraProcessIcon
               DateTime hoje = new DateTime();
               hoje = DateTime.Now;
               hoje = hoje.AddDays(-5);
-              importaSessao(hoje.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, hoje.Date.ToString().IndexOf(" ")));
-            
-               
+              importaSessao(hoje.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, hoje.Date.ToString().IndexOf(" ")));      
         }
 
     }
