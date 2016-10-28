@@ -12,7 +12,7 @@ namespace ImportadorCamaraProcessIcon
 {
     class Importador
     {
-        public void importaSessao(string data)
+        public void importaSessao(DateTime data)
         {
             try
             {
@@ -21,14 +21,17 @@ namespace ImportadorCamaraProcessIcon
                     SessoesReunioes cliente = new SessoesReunioes();
                     sessao_camara sessao = new sessao_camara();
                     List<sessao_camara> sessoes = new List<sessao_camara>();
-                    XmlNode resposta = cliente.ListarPresencasDia(data, "", "", "");
+                    XmlNode resposta = cliente.ListarPresencasDia(data.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture), "", "", "");
                     XmlNodeReader reader = new XmlNodeReader(resposta);
                     int qtdSessoaDia = 0;
                     reader.Read(); //header
                     reader.Read(); //dia
                     if (reader.NodeType.ToString() != "None")
                     {
-                        sessao.dataSessao = reader.ReadElementContentAsString(); //data             
+                        sessao.dataSessao = data; //data
+                        reader.Read();
+                        reader.Read();
+                        reader.Read();             
                         qtdSessoaDia = reader.ReadElementContentAsInt(); //qtdeSessoes
                         sessao.legislatura = reader.ReadElementContentAsInt(); //legislatura
                         //Verifica se o dia já foi importado
@@ -162,7 +165,7 @@ namespace ImportadorCamaraProcessIcon
         public void inicializar()
         {
             DateTime dataFinal = new DateTime();
-            DateTime dataInicio = new DateTime();
+            DateTime dataInicio;
             dataFinal = DateTime.Now;
             int ano0 = dataFinal.Year - 2015;
             string param = "";
@@ -182,30 +185,31 @@ namespace ImportadorCamaraProcessIcon
                             sessao = sessoesImportadas.ElementAt(i);
                         }
                     }
-                    dataInicio = DateTime.Parse(sessao.dataSessao, CultureInfo.CurrentCulture);
-                    dataInicio = dataInicio.AddDays(1);
-                    param = dataInicio.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, dataInicio.Date.ToString().IndexOf(" "));
+                    dataInicio = sessao.dataSessao;
+                    var deleteVerify = from b in db.presenca_deputado
+                                       where (b.sessao_camara.dataSessao == sessao.dataSessao)
+                                       select b;
+                    db.presenca_deputado.RemoveRange(deleteVerify.ToList());
+                    db.sessao_camara.Remove(sessao);
+                    db.SaveChangesAsync();
                 }
                 else
                 {
-
                     if ((ano0 < 4))
                     {
                         param = "01/02/" + 2015;
-                        dataInicio = DateTime.Parse(param, CultureInfo.CurrentCulture);
+                        dataInicio = new DateTime(2015, 02, 01);
                     }
                     else
                     {
-                        param = "01/02/" + ((int)dataFinal.Year - (ano0 % 4));
-                        dataInicio = DateTime.Parse(param, CultureInfo.CurrentCulture);
+                        dataInicio = new DateTime((dataFinal.Year - (ano0 % 4)), 02, 01);
                     }
                 }
             }
-            while (param != dataFinal.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, dataFinal.Date.ToString().IndexOf(" ")))
+            while (dataInicio.Date != dataFinal.Date)
             {
-                importaSessao(param);
+                importaSessao(dataInicio);
                 dataInicio = dataInicio.AddDays(1);
-                param = dataInicio.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, dataInicio.Date.ToString().IndexOf(" "));
             }
         }
         public void importaDia()
@@ -213,8 +217,7 @@ namespace ImportadorCamaraProcessIcon
               DateTime hoje = new DateTime();
               hoje = DateTime.Now;
               hoje = hoje.AddDays(-5);
-              importaSessao(hoje.Date.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture).Substring(0, hoje.Date.ToString().IndexOf(" ")));      
+              importaSessao(hoje);      
         }
-
     }
 }
