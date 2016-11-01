@@ -1,0 +1,23 @@
+CREATE TABLE `sessao_camara` (
+  `idSessao` int(11) NOT NULL AUTO_INCREMENT,
+  `legislatura` int(11) NOT NULL,
+  `descricao` varchar(40) NOT NULL,
+  `inicio` varchar(9) NOT NULL,
+  `dataSessao` date NOT NULL,
+  PRIMARY KEY (`idSessao`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Persiste as sessões da câmaras dos deputados.';
+
+CREATE TABLE `presenca_deputado` (
+  `idpresenca_deputado` int(11) NOT NULL AUTO_INCREMENT,
+  `idSessao` int(11) NOT NULL,
+  `legislatura` int(11) NOT NULL,
+  `carteiraParlamentar` int(11) NOT NULL,
+  `presenca` tinyint(4) NOT NULL,
+  `justificativa` varchar(50) DEFAULT NULL,
+  `presencaExterna` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`idpresenca_deputado`),
+  KEY `presenca_deputado_ibfk_2_idx` (`carteiraParlamentar`),
+  KEY `presenca_deputado_ibfk1_idx` (`idSessao`),
+  CONSTRAINT `presenca_deputado_ibfk1` FOREIGN KEY (`idSessao`) REFERENCES `sessao_camara` (`idSessao`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
