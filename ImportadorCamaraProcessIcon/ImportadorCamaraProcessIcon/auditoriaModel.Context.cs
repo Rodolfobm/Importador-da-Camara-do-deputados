@@ -13,10 +13,10 @@ namespace ImportadorCamaraProcessIcon
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class auditoriaEntities : DbContext
+    public partial class AuditoriaEntities : DbContext
     {
-        public auditoriaEntities()
-            : base("name=auditoriaEntities")
+        public AuditoriaEntities()
+            : base("name=AuditoriaEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace ImportadorCamaraProcessIcon
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<presenca_deputado> presenca_deputado { get; set; }
-        public virtual DbSet<sessao_camara> sessao_camara { get; set; }
+        public virtual DbSet<presenca_deputado> presencas_deputado { get; set; }
+        public virtual DbSet<sessao_camara> sessoes_camara { get; set; }
     }
 }

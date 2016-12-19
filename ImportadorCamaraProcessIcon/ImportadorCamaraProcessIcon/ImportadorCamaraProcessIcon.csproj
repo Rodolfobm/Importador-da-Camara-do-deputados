@@ -67,20 +67,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="auditoriaModel.Context.cs">
+    <Compile Include="AuditoriaModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>auditoriaModel.Context.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="auditoriaModel.cs">
+    <Compile Include="AuditoriaModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>auditoriaModel.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="auditoriaModel.Designer.cs">
+    <Compile Include="AuditoriaModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>auditoriaModel.edmx</DependentUpon>
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="ContextMenus.cs" />
     <Compile Include="Cronometro.cs">
@@ -88,13 +88,13 @@
     </Compile>
     <Compile Include="Importador.cs" />
     <Compile Include="presenca_deputado.cs">
-      <DependentUpon>auditoriaModel.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProcessIcon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sessao_camara.cs">
-      <DependentUpon>auditoriaModel.tt</DependentUpon>
+      <DependentUpon>AuditoriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Web References\br.leg.camara.www\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -111,12 +111,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="auditoriaModel.edmx">
+    <EntityDeploy Include="AuditoriaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>auditoriaModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>AuditoriaModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="auditoriaModel.edmx.diagram">
-      <DependentUpon>auditoriaModel.edmx</DependentUpon>
+    <None Include="AuditoriaModel.edmx.diagram">
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -166,15 +166,15 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="auditoriaModel.Context.tt">
+    <Content Include="AuditoriaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>auditoriaModel.edmx</DependentUpon>
-      <LastGenOutput>auditoriaModel.Context.cs</LastGenOutput>
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
+      <LastGenOutput>AuditoriaModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="auditoriaModel.tt">
+    <Content Include="AuditoriaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>auditoriaModel.edmx</DependentUpon>
-      <LastGenOutput>auditoriaModel.cs</LastGenOutput>
+      <DependentUpon>AuditoriaModel.edmx</DependentUpon>
+      <LastGenOutput>AuditoriaModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,7 +21,5 @@ namespace ImportadorCamaraProcessIcon
         public sbyte presenca { get; set; }
         public string justificativa { get; set; }
         public Nullable<sbyte> presencaExterna { get; set; }
-    
-        public virtual sessao_camara sessao_camara { get; set; }
     }
 }

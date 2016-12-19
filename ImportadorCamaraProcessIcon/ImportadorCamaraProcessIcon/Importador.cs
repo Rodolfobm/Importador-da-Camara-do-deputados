@@ -16,7 +16,7 @@ namespace ImportadorCamaraProcessIcon
         {
             try
             {
-                using (auditoriaEntities db = new auditoriaEntities())
+                using (AuditoriaEntities db = new AuditoriaEntities())
                 {
                     SessoesReunioes cliente = new SessoesReunioes();
                     sessao_camara sessao = new sessao_camara();
@@ -35,7 +35,7 @@ namespace ImportadorCamaraProcessIcon
                         qtdSessoaDia = reader.ReadElementContentAsInt(); //qtdeSessoes
                         sessao.legislatura = reader.ReadElementContentAsInt(); //legislatura
                         //Verifica se o dia já foi importado
-                        var dataverify = from d in db.sessao_camara
+                        var dataverify = from d in db.sessoes_camara
                                          .Where(d => d.dataSessao == sessao.dataSessao)
                                          select d;
 
@@ -65,7 +65,7 @@ namespace ImportadorCamaraProcessIcon
                                     inicio = sessao.inicio,
                                     legislatura = sessao.legislatura,
                                 });
-                                sessoes[i] = db.sessao_camara.Add(sessoes[i]);
+                                sessoes[i] = db.sessoes_camara.Add(sessoes[i]);
                                 db.SaveChangesAsync();
                             }
                             importaPresenca(resposta, db, sessoes);
@@ -97,7 +97,7 @@ namespace ImportadorCamaraProcessIcon
                 Console.Read();
             }
         }
-        private void importaPresenca(System.Xml.XmlNode resultado, auditoriaEntities db, List<sessao_camara> sessoes)
+        private void importaPresenca(System.Xml.XmlNode resultado, AuditoriaEntities db, List<sessao_camara> sessoes)
         {
             try
             {
@@ -128,10 +128,9 @@ namespace ImportadorCamaraProcessIcon
                         reader.Read();
                         string descricao = reader.ReadElementContentAsString();
                         descricao = descricao.Substring(0, descricao.IndexOf("-") - 1);
-                        //Xml não possui consistência na ordem e na quantidade de sessões em diferentes deputados
                         var verify = from b in sessoes.Where(b => b.descricao == descricao)
                                      select b;
-                        presenca.sessao_camara = verify.ElementAt(0);
+                        presenca.idSessao = verify.ElementAt(0).idSessao;
                         if (reader.ReadElementContentAsString() == "Presença")
                         {
                             presenca.presenca = 1;
@@ -140,7 +139,7 @@ namespace ImportadorCamaraProcessIcon
                         {
                             presenca.presenca = 0;
                         }
-                        db.presenca_deputado.Add(presenca);
+                        db.presencas_deputado.Add(presenca);
                         db.SaveChangesAsync();
                         reader.Read();
                     }
@@ -170,9 +169,9 @@ namespace ImportadorCamaraProcessIcon
             int ano0 = dataFinal.Year - 2015;
             string param = "";
 
-            using (auditoriaEntities db = new auditoriaEntities())
+            using (AuditoriaEntities db = new AuditoriaEntities())
             {
-                var dataVerify = from b in db.sessao_camara
+                var dataVerify = from b in db.sessoes_camara
                                  select b;
                 if (dataVerify.Count() != 0)
                 {
@@ -185,12 +184,13 @@ namespace ImportadorCamaraProcessIcon
                             sessao = sessoesImportadas.ElementAt(i);
                         }
                     }
+                    //ALTERAR - POSSIVELMENTE 2 LINQS
                     dataInicio = sessao.dataSessao;
-                    var deleteVerify = from b in db.presenca_deputado
-                                       where (b.sessao_camara.dataSessao == sessao.dataSessao)
+                    var deleteVerify = from b in db.presencas_deputado
+                                       where (b.idSessao == sessao.idSessao)
                                        select b;
-                    db.presenca_deputado.RemoveRange(deleteVerify.ToList());
-                    db.sessao_camara.Remove(sessao);
+                    db.presencas_deputado.RemoveRange(deleteVerify.ToList());
+                    db.sessoes_camara.Remove(sessao);
                     db.SaveChangesAsync();
                 }
                 else

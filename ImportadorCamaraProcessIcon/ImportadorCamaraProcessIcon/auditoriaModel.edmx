@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="auditoriaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="presenca_deputado">
+      <Schema Namespace="AuditoriaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cf_presenca_deputado">
           <Key>
             <PropertyRef Name="idpresenca_deputado" />
           </Key>
@@ -17,41 +17,25 @@
           <Property Name="justificativa" Type="varchar" MaxLength="50" />
           <Property Name="presencaExterna" Type="tinyint" />
         </EntityType>
-        <EntityType Name="sessao_camara">
+        <EntityType Name="cf_sessao_camara">
           <Key>
             <PropertyRef Name="idSessao" />
           </Key>
           <Property Name="idSessao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataSessao" Type="date" Nullable="false" />
           <Property Name="legislatura" Type="int" Nullable="false" />
           <Property Name="descricao" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="inicio" Type="varchar" MaxLength="9" Nullable="false" />
-          <Property Name="dataSessao" Type="date" Nullable="false" />
         </EntityType>
-        <Association Name="presenca_deputado_ibfk_1">
-          <End Role="sessao_camara" Type="Self.sessao_camara" Multiplicity="1" />
-          <End Role="presenca_deputado" Type="Self.presenca_deputado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sessao_camara">
-              <PropertyRef Name="idSessao" />
-            </Principal>
-            <Dependent Role="presenca_deputado">
-              <PropertyRef Name="idSessao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="auditoriaModelStoreContainer">
-          <EntitySet Name="presenca_deputado" EntityType="Self.presenca_deputado" Schema="auditoria" store:Type="Tables" />
-          <EntitySet Name="sessao_camara" EntityType="Self.sessao_camara" Schema="auditoria" store:Type="Tables" />
-          <AssociationSet Name="presenca_deputado_ibfk_1" Association="Self.presenca_deputado_ibfk_1">
-            <End Role="sessao_camara" EntitySet="sessao_camara" />
-            <End Role="presenca_deputado" EntitySet="presenca_deputado" />
-          </AssociationSet>
+        <EntityContainer Name="AuditoriaModelStoreContainer">
+          <EntitySet Name="cf_presenca_deputado" EntityType="Self.cf_presenca_deputado" Schema="ops-auditoria" store:Type="Tables" />
+          <EntitySet Name="cf_sessao_camara" EntityType="Self.cf_sessao_camara" Schema="ops-auditoria" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="auditoriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="AuditoriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="presenca_deputado">
           <Key>
             <PropertyRef Name="idpresenca_deputado" />
@@ -63,47 +47,30 @@
           <Property Name="presenca" Type="SByte" Nullable="false" />
           <Property Name="justificativa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="presencaExterna" Type="SByte" />
-          <NavigationProperty Name="sessao_camara" Relationship="Self.presenca_deputado_ibfk_1" FromRole="presenca_deputado" ToRole="sessao_camara" />
         </EntityType>
         <EntityType Name="sessao_camara">
           <Key>
             <PropertyRef Name="idSessao" />
           </Key>
           <Property Name="idSessao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataSessao" Type="DateTime" Nullable="false" />
           <Property Name="legislatura" Type="Int32" Nullable="false" />
           <Property Name="descricao" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="inicio" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="dataSessao" Type="DateTime" Nullable="false" />
         </EntityType>
-        <Association Name="presenca_deputado_ibfk_1">
-          <End Role="sessao_camara" Type="Self.sessao_camara" Multiplicity="1" />
-          <End Role="presenca_deputado" Type="Self.presenca_deputado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sessao_camara">
-              <PropertyRef Name="idSessao" />
-            </Principal>
-            <Dependent Role="presenca_deputado">
-              <PropertyRef Name="idSessao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="auditoriaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="presenca_deputado" EntityType="Self.presenca_deputado" />
-          <EntitySet Name="sessao_camara" EntityType="Self.sessao_camara" />
-          <AssociationSet Name="presenca_deputado_ibfk_1" Association="Self.presenca_deputado_ibfk_1">
-            <End Role="sessao_camara" EntitySet="sessao_camara" />
-            <End Role="presenca_deputado" EntitySet="presenca_deputado" />
-          </AssociationSet>
+        <EntityContainer Name="AuditoriaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="presencas_deputado" EntityType="AuditoriaModel.presenca_deputado" />
+          <EntitySet Name="sessoes_camara" EntityType="AuditoriaModel.sessao_camara" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="auditoriaModelStoreContainer" CdmEntityContainer="auditoriaEntities">
-          <EntitySetMapping Name="presenca_deputado">
-            <EntityTypeMapping TypeName="auditoriaModel.presenca_deputado">
-              <MappingFragment StoreEntitySet="presenca_deputado">
+        <EntityContainerMapping StorageEntityContainer="AuditoriaModelStoreContainer" CdmEntityContainer="AuditoriaEntities">
+          <EntitySetMapping Name="presencas_deputado">
+            <EntityTypeMapping TypeName="AuditoriaModel.presenca_deputado">
+              <MappingFragment StoreEntitySet="cf_presenca_deputado">
                 <ScalarProperty Name="idpresenca_deputado" ColumnName="idpresenca_deputado" />
                 <ScalarProperty Name="idSessao" ColumnName="idSessao" />
                 <ScalarProperty Name="legislatura" ColumnName="legislatura" />
@@ -114,14 +81,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sessao_camara">
-            <EntityTypeMapping TypeName="auditoriaModel.sessao_camara">
-              <MappingFragment StoreEntitySet="sessao_camara">
+          <EntitySetMapping Name="sessoes_camara">
+            <EntityTypeMapping TypeName="AuditoriaModel.sessao_camara">
+              <MappingFragment StoreEntitySet="cf_sessao_camara">
                 <ScalarProperty Name="idSessao" ColumnName="idSessao" />
+                <ScalarProperty Name="dataSessao" ColumnName="dataSessao" />
                 <ScalarProperty Name="legislatura" ColumnName="legislatura" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
                 <ScalarProperty Name="inicio" ColumnName="inicio" />
-                <ScalarProperty Name="dataSessao" ColumnName="dataSessao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -140,7 +107,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

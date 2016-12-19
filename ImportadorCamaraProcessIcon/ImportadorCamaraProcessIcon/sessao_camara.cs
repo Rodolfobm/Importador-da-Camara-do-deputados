@@ -15,9 +15,9 @@ namespace ImportadorCamaraProcessIcon
     public partial class sessao_camara
     {
         public int idSessao { get; set; }
+        public System.DateTime dataSessao { get; set; }
         public int legislatura { get; set; }
         public string descricao { get; set; }
         public string inicio { get; set; }
-        public System.DateTime dataSessao { get; set; }
     }
 }
